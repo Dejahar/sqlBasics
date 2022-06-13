@@ -258,9 +258,9 @@ select distinct first_name, last_name from employees;
 
 /*Delete all employees with a salary greater than 20,000*/
 delete from salaries where salary >=20000;
+delete from salaries where emp_no in (select emp_no from salaries where salary >=30000);
 /*Remove the department that has more employees*/
-delete from department where dept_no in (
-select dept_no , count(emp_no) as total from dept_emp group by dept_no order by total desc limit 1);
+delete from department where dept_no in ( select dept_no , count(emp_no) as total from dept_emp group by dept_no order by total desc limit 1);
 
 
 
